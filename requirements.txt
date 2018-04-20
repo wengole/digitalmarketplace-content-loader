@@ -1,3 +1,2 @@
 -e .
 # DON'T FORGET TO UPDATE setup.py !!
-git+https://github.com/alphagov/digitalmarketplace-utils.git@30.0.0#egg=digitalmarketplace-utils==30.0.0

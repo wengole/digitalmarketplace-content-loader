@@ -1,13 +1,12 @@
 import collections
 
 from jinja2 import Markup, StrictUndefined, TemplateSyntaxError, UndefinedError
+from jinja2.sandbox import SandboxedEnvironment
 from markdown import markdown
 from six import string_types
 
-from dmutils.jinja2_environment import DMSandboxedEnvironment
-from dmcontent.errors import ContentNotFoundError
-
-from .errors import ContentTemplateError
+from .errors import ContentNotFoundError, ContentTemplateError
+from .filters import CUSTOM_FILTERS
 
 
 class TemplateField(object):
@@ -46,6 +45,14 @@ class TemplateField(object):
             self.__class__.__name__,
             self.source.encode('utf-8')
         )
+
+
+class DMSandboxedEnvironment(SandboxedEnvironment):
+    """DigitalMarketplace environment with filters."""
+
+    def __init__(self, *args, **kwargs):
+        super(DMSandboxedEnvironment, self).__init__(*args, **kwargs)
+        self.filters.update(CUSTOM_FILTERS)
 
 
 def template_all(item):

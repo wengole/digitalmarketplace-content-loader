@@ -2,11 +2,9 @@ from collections import OrderedDict, defaultdict
 from datetime import datetime
 import re
 
-from dmutils.formats import DATE_FORMAT, DISPLAY_DATE_FORMAT
-
 from .converters import convert_to_boolean, convert_to_number
 from .errors import ContentNotFoundError
-from .formats import format_price
+from .formats import format_price, DATE_FORMAT, DISPLAY_DATE_FORMAT
 from .utils import TemplateField, drop_followups, get_option_value
 
 
